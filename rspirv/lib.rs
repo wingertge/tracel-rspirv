@@ -31,6 +31,7 @@
 //! ```
 //! use tracel_rspirv::binary::Assemble;
 //! use tracel_rspirv::binary::Disassemble;
+//! use tracel_rspirv::spirv;
 //!
 //! // Building
 //! let mut b = tracel_rspirv::dr::Builder::new();
