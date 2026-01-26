@@ -44,7 +44,7 @@ const WORD_NUM_BYTES: usize = 4;
 /// # Examples
 ///
 /// ```
-/// use rspirv::binary::{Decoder, DecodeError};
+/// use tracel_rspirv::binary::{Decoder, DecodeError};
 /// use spirv::SourceLanguage;
 ///
 /// let v = vec![0x12, 0x34, 0x56, 0x78,

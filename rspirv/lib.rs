@@ -29,11 +29,11 @@
 //! disassembling it:
 //!
 //! ```
-//! use rspirv::binary::Assemble;
-//! use rspirv::binary::Disassemble;
+//! use tracel_rspirv::binary::Assemble;
+//! use tracel_rspirv::binary::Disassemble;
 //!
 //! // Building
-//! let mut b = rspirv::dr::Builder::new();
+//! let mut b = tracel_rspirv::dr::Builder::new();
 //! b.memory_model(spirv::AddressingModel::Logical, spirv::MemoryModel::GLSL450);
 //! let void = b.type_void();
 //! let voidf = b.type_function(void, vec![void]);
@@ -54,8 +54,8 @@
 //! assert_eq!(spirv::MAGIC_NUMBER, code[0]);
 //!
 //! // Parsing
-//! let mut loader = rspirv::dr::Loader::new();
-//! rspirv::binary::parse_words(&code, &mut loader).unwrap();
+//! let mut loader = tracel_rspirv::dr::Loader::new();
+//! tracel_rspirv::binary::parse_words(&code, &mut loader).unwrap();
 //! let module = loader.module();
 //!
 //! // Disassembling

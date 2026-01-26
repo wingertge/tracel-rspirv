@@ -212,8 +212,7 @@ impl binary::Consumer for Loader {
 /// # Examples
 ///
 /// ```
-/// use rspirv;
-/// use rspirv::binary::Disassemble;
+/// use tracel_rspirv::binary::Disassemble;
 ///
 /// let buffer: Vec<u8> = vec![
 ///     // Magic number.           Version number: 1.0.
@@ -227,7 +226,7 @@ impl binary::Consumer for Loader {
 ///     // GLSL450.
 ///     0x01, 0x00, 0x00, 0x00];
 ///
-/// let dis = match rspirv::dr::load_bytes(buffer) {
+/// let dis = match tracel_rspirv::dr::load_bytes(buffer) {
 ///     Ok(module) => module.disassemble(),
 ///     Err(err) => format!("{}", err),
 /// };
@@ -250,8 +249,7 @@ pub fn load_bytes(binary: impl AsRef<[u8]>) -> ParseResult<dr::Module> {
 /// # Examples
 ///
 /// ```
-/// use rspirv;
-/// use rspirv::binary::Disassemble;
+/// use tracel_rspirv::binary::Disassemble;
 ///
 /// let buffer: Vec<u32> = vec![
 ///     0x07230203,  // Magic number
@@ -264,7 +262,7 @@ pub fn load_bytes(binary: impl AsRef<[u8]>) -> ParseResult<dr::Module> {
 ///     0x00000001,  // GLSL450
 /// ];
 ///
-/// let dis = match rspirv::dr::load_words(buffer) {
+/// let dis = match tracel_rspirv::dr::load_words(buffer) {
 ///     Ok(module) => module.disassemble(),
 ///     Err(err) => format!("{}", err),
 /// };
