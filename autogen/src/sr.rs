@@ -37,9 +37,20 @@ impl OperandTokens {
         let name = get_param_name(operands, operand_index);
         let iter = Ident::new(OPERAND_ITER, Span::call_site());
 
+        // Can maybe make this more generic by using vendor suffix as the condition, since extensions
+        // never use constants. But we don't have a list of vendor suffixes right now.
+        let dynamic_length_ops = [
+            "OpVariableLengthArrayINTEL",
+            "OpUntypedVariableLengthArrayINTEL",
+        ];
+        let is_dynamic_length_op = || matches!(inst, Some(structs::Instruction { opname, .. }) if dynamic_length_ops.contains(&opname.as_str()));
+
         let (ty, lift_value, op_ty) = match operand.kind.as_str() {
             "IdRef" => {
                 let (ty, value) = match operand.name.trim_matches('\'') {
+                    "Length" if is_dynamic_length_op() => {
+                        (quote! { spirv::Word }, quote! { *value })
+                    }
                     "Length" => (
                         quote! { Token<Constant> },
                         quote! { self.constants.lookup_token(*value) },

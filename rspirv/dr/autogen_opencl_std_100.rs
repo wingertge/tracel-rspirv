@@ -2554,6 +2554,458 @@ impl Builder {
         )
     }
     #[allow(clippy::too_many_arguments)]
+    pub fn cl_fclamp(
+        &mut self,
+        result_type: spirv::Word,
+        x: spirv::Word,
+        minval: spirv::Word,
+        maxval: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        self.cl_fclamp_id(result_type, None, x, minval, maxval)
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_fclamp_id(
+        &mut self,
+        result_type: spirv::Word,
+        result_id: Option<spirv::Word>,
+        x: spirv::Word,
+        minval: spirv::Word,
+        maxval: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
+        #[allow(unused_mut)]
+        let mut args = vec![
+            dr::Operand::IdRef(x),
+            dr::Operand::IdRef(minval),
+            dr::Operand::IdRef(maxval),
+        ];
+        self.ext_inst(
+            result_type,
+            result_id,
+            extension_set,
+            crate::spirv::CLOp::fclamp as spirv::Word,
+            args,
+        )
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_degrees(
+        &mut self,
+        result_type: spirv::Word,
+        radians: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        self.cl_degrees_id(result_type, None, radians)
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_degrees_id(
+        &mut self,
+        result_type: spirv::Word,
+        result_id: Option<spirv::Word>,
+        radians: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
+        #[allow(unused_mut)]
+        let mut args = vec![dr::Operand::IdRef(radians)];
+        self.ext_inst(
+            result_type,
+            result_id,
+            extension_set,
+            crate::spirv::CLOp::degrees as spirv::Word,
+            args,
+        )
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_fmax_common(
+        &mut self,
+        result_type: spirv::Word,
+        x: spirv::Word,
+        y: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        self.cl_fmax_common_id(result_type, None, x, y)
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_fmax_common_id(
+        &mut self,
+        result_type: spirv::Word,
+        result_id: Option<spirv::Word>,
+        x: spirv::Word,
+        y: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
+        #[allow(unused_mut)]
+        let mut args = vec![dr::Operand::IdRef(x), dr::Operand::IdRef(y)];
+        self.ext_inst(
+            result_type,
+            result_id,
+            extension_set,
+            crate::spirv::CLOp::fmax_common as spirv::Word,
+            args,
+        )
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_fmin_common(
+        &mut self,
+        result_type: spirv::Word,
+        x: spirv::Word,
+        y: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        self.cl_fmin_common_id(result_type, None, x, y)
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_fmin_common_id(
+        &mut self,
+        result_type: spirv::Word,
+        result_id: Option<spirv::Word>,
+        x: spirv::Word,
+        y: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
+        #[allow(unused_mut)]
+        let mut args = vec![dr::Operand::IdRef(x), dr::Operand::IdRef(y)];
+        self.ext_inst(
+            result_type,
+            result_id,
+            extension_set,
+            crate::spirv::CLOp::fmin_common as spirv::Word,
+            args,
+        )
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_mix(
+        &mut self,
+        result_type: spirv::Word,
+        x: spirv::Word,
+        y: spirv::Word,
+        a: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        self.cl_mix_id(result_type, None, x, y, a)
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_mix_id(
+        &mut self,
+        result_type: spirv::Word,
+        result_id: Option<spirv::Word>,
+        x: spirv::Word,
+        y: spirv::Word,
+        a: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
+        #[allow(unused_mut)]
+        let mut args = vec![
+            dr::Operand::IdRef(x),
+            dr::Operand::IdRef(y),
+            dr::Operand::IdRef(a),
+        ];
+        self.ext_inst(
+            result_type,
+            result_id,
+            extension_set,
+            crate::spirv::CLOp::mix as spirv::Word,
+            args,
+        )
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_radians(
+        &mut self,
+        result_type: spirv::Word,
+        degrees: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        self.cl_radians_id(result_type, None, degrees)
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_radians_id(
+        &mut self,
+        result_type: spirv::Word,
+        result_id: Option<spirv::Word>,
+        degrees: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
+        #[allow(unused_mut)]
+        let mut args = vec![dr::Operand::IdRef(degrees)];
+        self.ext_inst(
+            result_type,
+            result_id,
+            extension_set,
+            crate::spirv::CLOp::radians as spirv::Word,
+            args,
+        )
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_step(
+        &mut self,
+        result_type: spirv::Word,
+        edge: spirv::Word,
+        x: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        self.cl_step_id(result_type, None, edge, x)
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_step_id(
+        &mut self,
+        result_type: spirv::Word,
+        result_id: Option<spirv::Word>,
+        edge: spirv::Word,
+        x: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
+        #[allow(unused_mut)]
+        let mut args = vec![dr::Operand::IdRef(edge), dr::Operand::IdRef(x)];
+        self.ext_inst(
+            result_type,
+            result_id,
+            extension_set,
+            crate::spirv::CLOp::step as spirv::Word,
+            args,
+        )
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_smoothstep(
+        &mut self,
+        result_type: spirv::Word,
+        edge0: spirv::Word,
+        edge1: spirv::Word,
+        x: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        self.cl_smoothstep_id(result_type, None, edge0, edge1, x)
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_smoothstep_id(
+        &mut self,
+        result_type: spirv::Word,
+        result_id: Option<spirv::Word>,
+        edge0: spirv::Word,
+        edge1: spirv::Word,
+        x: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
+        #[allow(unused_mut)]
+        let mut args = vec![
+            dr::Operand::IdRef(edge0),
+            dr::Operand::IdRef(edge1),
+            dr::Operand::IdRef(x),
+        ];
+        self.ext_inst(
+            result_type,
+            result_id,
+            extension_set,
+            crate::spirv::CLOp::smoothstep as spirv::Word,
+            args,
+        )
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_sign(
+        &mut self,
+        result_type: spirv::Word,
+        x: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        self.cl_sign_id(result_type, None, x)
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_sign_id(
+        &mut self,
+        result_type: spirv::Word,
+        result_id: Option<spirv::Word>,
+        x: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
+        #[allow(unused_mut)]
+        let mut args = vec![dr::Operand::IdRef(x)];
+        self.ext_inst(
+            result_type,
+            result_id,
+            extension_set,
+            crate::spirv::CLOp::sign as spirv::Word,
+            args,
+        )
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_cross(
+        &mut self,
+        result_type: spirv::Word,
+        p0: spirv::Word,
+        p1: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        self.cl_cross_id(result_type, None, p0, p1)
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_cross_id(
+        &mut self,
+        result_type: spirv::Word,
+        result_id: Option<spirv::Word>,
+        p0: spirv::Word,
+        p1: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
+        #[allow(unused_mut)]
+        let mut args = vec![dr::Operand::IdRef(p0), dr::Operand::IdRef(p1)];
+        self.ext_inst(
+            result_type,
+            result_id,
+            extension_set,
+            crate::spirv::CLOp::cross as spirv::Word,
+            args,
+        )
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_distance(
+        &mut self,
+        result_type: spirv::Word,
+        p0: spirv::Word,
+        p1: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        self.cl_distance_id(result_type, None, p0, p1)
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_distance_id(
+        &mut self,
+        result_type: spirv::Word,
+        result_id: Option<spirv::Word>,
+        p0: spirv::Word,
+        p1: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
+        #[allow(unused_mut)]
+        let mut args = vec![dr::Operand::IdRef(p0), dr::Operand::IdRef(p1)];
+        self.ext_inst(
+            result_type,
+            result_id,
+            extension_set,
+            crate::spirv::CLOp::distance as spirv::Word,
+            args,
+        )
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_length(
+        &mut self,
+        result_type: spirv::Word,
+        p: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        self.cl_length_id(result_type, None, p)
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_length_id(
+        &mut self,
+        result_type: spirv::Word,
+        result_id: Option<spirv::Word>,
+        p: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
+        #[allow(unused_mut)]
+        let mut args = vec![dr::Operand::IdRef(p)];
+        self.ext_inst(
+            result_type,
+            result_id,
+            extension_set,
+            crate::spirv::CLOp::length as spirv::Word,
+            args,
+        )
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_normalize(
+        &mut self,
+        result_type: spirv::Word,
+        p: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        self.cl_normalize_id(result_type, None, p)
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_normalize_id(
+        &mut self,
+        result_type: spirv::Word,
+        result_id: Option<spirv::Word>,
+        p: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
+        #[allow(unused_mut)]
+        let mut args = vec![dr::Operand::IdRef(p)];
+        self.ext_inst(
+            result_type,
+            result_id,
+            extension_set,
+            crate::spirv::CLOp::normalize as spirv::Word,
+            args,
+        )
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_fast_distance(
+        &mut self,
+        result_type: spirv::Word,
+        p0: spirv::Word,
+        p1: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        self.cl_fast_distance_id(result_type, None, p0, p1)
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_fast_distance_id(
+        &mut self,
+        result_type: spirv::Word,
+        result_id: Option<spirv::Word>,
+        p0: spirv::Word,
+        p1: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
+        #[allow(unused_mut)]
+        let mut args = vec![dr::Operand::IdRef(p0), dr::Operand::IdRef(p1)];
+        self.ext_inst(
+            result_type,
+            result_id,
+            extension_set,
+            crate::spirv::CLOp::fast_distance as spirv::Word,
+            args,
+        )
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_fast_length(
+        &mut self,
+        result_type: spirv::Word,
+        p: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        self.cl_fast_length_id(result_type, None, p)
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_fast_length_id(
+        &mut self,
+        result_type: spirv::Word,
+        result_id: Option<spirv::Word>,
+        p: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
+        #[allow(unused_mut)]
+        let mut args = vec![dr::Operand::IdRef(p)];
+        self.ext_inst(
+            result_type,
+            result_id,
+            extension_set,
+            crate::spirv::CLOp::fast_length as spirv::Word,
+            args,
+        )
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_fast_normalize(
+        &mut self,
+        result_type: spirv::Word,
+        p: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        self.cl_fast_normalize_id(result_type, None, p)
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_fast_normalize_id(
+        &mut self,
+        result_type: spirv::Word,
+        result_id: Option<spirv::Word>,
+        p: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
+        #[allow(unused_mut)]
+        let mut args = vec![dr::Operand::IdRef(p)];
+        self.ext_inst(
+            result_type,
+            result_id,
+            extension_set,
+            crate::spirv::CLOp::fast_normalize as spirv::Word,
+            args,
+        )
+    }
+    #[allow(clippy::too_many_arguments)]
     pub fn cl_s_abs(
         &mut self,
         result_type: spirv::Word,
@@ -3428,642 +3880,6 @@ impl Builder {
         )
     }
     #[allow(clippy::too_many_arguments)]
-    pub fn cl_u_abs(
-        &mut self,
-        result_type: spirv::Word,
-        x: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        self.cl_u_abs_id(result_type, None, x)
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_u_abs_id(
-        &mut self,
-        result_type: spirv::Word,
-        result_id: Option<spirv::Word>,
-        x: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
-        #[allow(unused_mut)]
-        let mut args = vec![dr::Operand::IdRef(x)];
-        self.ext_inst(
-            result_type,
-            result_id,
-            extension_set,
-            crate::spirv::CLOp::u_abs as spirv::Word,
-            args,
-        )
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_u_abs_diff(
-        &mut self,
-        result_type: spirv::Word,
-        x: spirv::Word,
-        y: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        self.cl_u_abs_diff_id(result_type, None, x, y)
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_u_abs_diff_id(
-        &mut self,
-        result_type: spirv::Word,
-        result_id: Option<spirv::Word>,
-        x: spirv::Word,
-        y: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
-        #[allow(unused_mut)]
-        let mut args = vec![dr::Operand::IdRef(x), dr::Operand::IdRef(y)];
-        self.ext_inst(
-            result_type,
-            result_id,
-            extension_set,
-            crate::spirv::CLOp::u_abs_diff as spirv::Word,
-            args,
-        )
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_u_mul_hi(
-        &mut self,
-        result_type: spirv::Word,
-        x: spirv::Word,
-        y: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        self.cl_u_mul_hi_id(result_type, None, x, y)
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_u_mul_hi_id(
-        &mut self,
-        result_type: spirv::Word,
-        result_id: Option<spirv::Word>,
-        x: spirv::Word,
-        y: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
-        #[allow(unused_mut)]
-        let mut args = vec![dr::Operand::IdRef(x), dr::Operand::IdRef(y)];
-        self.ext_inst(
-            result_type,
-            result_id,
-            extension_set,
-            crate::spirv::CLOp::u_mul_hi as spirv::Word,
-            args,
-        )
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_u_mad_hi(
-        &mut self,
-        result_type: spirv::Word,
-        a: spirv::Word,
-        b: spirv::Word,
-        c: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        self.cl_u_mad_hi_id(result_type, None, a, b, c)
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_u_mad_hi_id(
-        &mut self,
-        result_type: spirv::Word,
-        result_id: Option<spirv::Word>,
-        a: spirv::Word,
-        b: spirv::Word,
-        c: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
-        #[allow(unused_mut)]
-        let mut args = vec![
-            dr::Operand::IdRef(a),
-            dr::Operand::IdRef(b),
-            dr::Operand::IdRef(c),
-        ];
-        self.ext_inst(
-            result_type,
-            result_id,
-            extension_set,
-            crate::spirv::CLOp::u_mad_hi as spirv::Word,
-            args,
-        )
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_fclamp(
-        &mut self,
-        result_type: spirv::Word,
-        x: spirv::Word,
-        minval: spirv::Word,
-        maxval: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        self.cl_fclamp_id(result_type, None, x, minval, maxval)
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_fclamp_id(
-        &mut self,
-        result_type: spirv::Word,
-        result_id: Option<spirv::Word>,
-        x: spirv::Word,
-        minval: spirv::Word,
-        maxval: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
-        #[allow(unused_mut)]
-        let mut args = vec![
-            dr::Operand::IdRef(x),
-            dr::Operand::IdRef(minval),
-            dr::Operand::IdRef(maxval),
-        ];
-        self.ext_inst(
-            result_type,
-            result_id,
-            extension_set,
-            crate::spirv::CLOp::fclamp as spirv::Word,
-            args,
-        )
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_degrees(
-        &mut self,
-        result_type: spirv::Word,
-        radians: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        self.cl_degrees_id(result_type, None, radians)
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_degrees_id(
-        &mut self,
-        result_type: spirv::Word,
-        result_id: Option<spirv::Word>,
-        radians: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
-        #[allow(unused_mut)]
-        let mut args = vec![dr::Operand::IdRef(radians)];
-        self.ext_inst(
-            result_type,
-            result_id,
-            extension_set,
-            crate::spirv::CLOp::degrees as spirv::Word,
-            args,
-        )
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_fmax_common(
-        &mut self,
-        result_type: spirv::Word,
-        x: spirv::Word,
-        y: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        self.cl_fmax_common_id(result_type, None, x, y)
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_fmax_common_id(
-        &mut self,
-        result_type: spirv::Word,
-        result_id: Option<spirv::Word>,
-        x: spirv::Word,
-        y: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
-        #[allow(unused_mut)]
-        let mut args = vec![dr::Operand::IdRef(x), dr::Operand::IdRef(y)];
-        self.ext_inst(
-            result_type,
-            result_id,
-            extension_set,
-            crate::spirv::CLOp::fmax_common as spirv::Word,
-            args,
-        )
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_fmin_common(
-        &mut self,
-        result_type: spirv::Word,
-        x: spirv::Word,
-        y: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        self.cl_fmin_common_id(result_type, None, x, y)
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_fmin_common_id(
-        &mut self,
-        result_type: spirv::Word,
-        result_id: Option<spirv::Word>,
-        x: spirv::Word,
-        y: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
-        #[allow(unused_mut)]
-        let mut args = vec![dr::Operand::IdRef(x), dr::Operand::IdRef(y)];
-        self.ext_inst(
-            result_type,
-            result_id,
-            extension_set,
-            crate::spirv::CLOp::fmin_common as spirv::Word,
-            args,
-        )
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_mix(
-        &mut self,
-        result_type: spirv::Word,
-        x: spirv::Word,
-        y: spirv::Word,
-        a: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        self.cl_mix_id(result_type, None, x, y, a)
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_mix_id(
-        &mut self,
-        result_type: spirv::Word,
-        result_id: Option<spirv::Word>,
-        x: spirv::Word,
-        y: spirv::Word,
-        a: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
-        #[allow(unused_mut)]
-        let mut args = vec![
-            dr::Operand::IdRef(x),
-            dr::Operand::IdRef(y),
-            dr::Operand::IdRef(a),
-        ];
-        self.ext_inst(
-            result_type,
-            result_id,
-            extension_set,
-            crate::spirv::CLOp::mix as spirv::Word,
-            args,
-        )
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_radians(
-        &mut self,
-        result_type: spirv::Word,
-        degrees: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        self.cl_radians_id(result_type, None, degrees)
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_radians_id(
-        &mut self,
-        result_type: spirv::Word,
-        result_id: Option<spirv::Word>,
-        degrees: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
-        #[allow(unused_mut)]
-        let mut args = vec![dr::Operand::IdRef(degrees)];
-        self.ext_inst(
-            result_type,
-            result_id,
-            extension_set,
-            crate::spirv::CLOp::radians as spirv::Word,
-            args,
-        )
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_step(
-        &mut self,
-        result_type: spirv::Word,
-        edge: spirv::Word,
-        x: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        self.cl_step_id(result_type, None, edge, x)
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_step_id(
-        &mut self,
-        result_type: spirv::Word,
-        result_id: Option<spirv::Word>,
-        edge: spirv::Word,
-        x: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
-        #[allow(unused_mut)]
-        let mut args = vec![dr::Operand::IdRef(edge), dr::Operand::IdRef(x)];
-        self.ext_inst(
-            result_type,
-            result_id,
-            extension_set,
-            crate::spirv::CLOp::step as spirv::Word,
-            args,
-        )
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_smoothstep(
-        &mut self,
-        result_type: spirv::Word,
-        edge0: spirv::Word,
-        edge1: spirv::Word,
-        x: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        self.cl_smoothstep_id(result_type, None, edge0, edge1, x)
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_smoothstep_id(
-        &mut self,
-        result_type: spirv::Word,
-        result_id: Option<spirv::Word>,
-        edge0: spirv::Word,
-        edge1: spirv::Word,
-        x: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
-        #[allow(unused_mut)]
-        let mut args = vec![
-            dr::Operand::IdRef(edge0),
-            dr::Operand::IdRef(edge1),
-            dr::Operand::IdRef(x),
-        ];
-        self.ext_inst(
-            result_type,
-            result_id,
-            extension_set,
-            crate::spirv::CLOp::smoothstep as spirv::Word,
-            args,
-        )
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_sign(
-        &mut self,
-        result_type: spirv::Word,
-        x: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        self.cl_sign_id(result_type, None, x)
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_sign_id(
-        &mut self,
-        result_type: spirv::Word,
-        result_id: Option<spirv::Word>,
-        x: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
-        #[allow(unused_mut)]
-        let mut args = vec![dr::Operand::IdRef(x)];
-        self.ext_inst(
-            result_type,
-            result_id,
-            extension_set,
-            crate::spirv::CLOp::sign as spirv::Word,
-            args,
-        )
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_cross(
-        &mut self,
-        result_type: spirv::Word,
-        p0: spirv::Word,
-        p1: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        self.cl_cross_id(result_type, None, p0, p1)
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_cross_id(
-        &mut self,
-        result_type: spirv::Word,
-        result_id: Option<spirv::Word>,
-        p0: spirv::Word,
-        p1: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
-        #[allow(unused_mut)]
-        let mut args = vec![dr::Operand::IdRef(p0), dr::Operand::IdRef(p1)];
-        self.ext_inst(
-            result_type,
-            result_id,
-            extension_set,
-            crate::spirv::CLOp::cross as spirv::Word,
-            args,
-        )
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_distance(
-        &mut self,
-        result_type: spirv::Word,
-        p0: spirv::Word,
-        p1: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        self.cl_distance_id(result_type, None, p0, p1)
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_distance_id(
-        &mut self,
-        result_type: spirv::Word,
-        result_id: Option<spirv::Word>,
-        p0: spirv::Word,
-        p1: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
-        #[allow(unused_mut)]
-        let mut args = vec![dr::Operand::IdRef(p0), dr::Operand::IdRef(p1)];
-        self.ext_inst(
-            result_type,
-            result_id,
-            extension_set,
-            crate::spirv::CLOp::distance as spirv::Word,
-            args,
-        )
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_length(
-        &mut self,
-        result_type: spirv::Word,
-        p: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        self.cl_length_id(result_type, None, p)
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_length_id(
-        &mut self,
-        result_type: spirv::Word,
-        result_id: Option<spirv::Word>,
-        p: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
-        #[allow(unused_mut)]
-        let mut args = vec![dr::Operand::IdRef(p)];
-        self.ext_inst(
-            result_type,
-            result_id,
-            extension_set,
-            crate::spirv::CLOp::length as spirv::Word,
-            args,
-        )
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_normalize(
-        &mut self,
-        result_type: spirv::Word,
-        p: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        self.cl_normalize_id(result_type, None, p)
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_normalize_id(
-        &mut self,
-        result_type: spirv::Word,
-        result_id: Option<spirv::Word>,
-        p: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
-        #[allow(unused_mut)]
-        let mut args = vec![dr::Operand::IdRef(p)];
-        self.ext_inst(
-            result_type,
-            result_id,
-            extension_set,
-            crate::spirv::CLOp::normalize as spirv::Word,
-            args,
-        )
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_fast_distance(
-        &mut self,
-        result_type: spirv::Word,
-        p0: spirv::Word,
-        p1: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        self.cl_fast_distance_id(result_type, None, p0, p1)
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_fast_distance_id(
-        &mut self,
-        result_type: spirv::Word,
-        result_id: Option<spirv::Word>,
-        p0: spirv::Word,
-        p1: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
-        #[allow(unused_mut)]
-        let mut args = vec![dr::Operand::IdRef(p0), dr::Operand::IdRef(p1)];
-        self.ext_inst(
-            result_type,
-            result_id,
-            extension_set,
-            crate::spirv::CLOp::fast_distance as spirv::Word,
-            args,
-        )
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_fast_length(
-        &mut self,
-        result_type: spirv::Word,
-        p: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        self.cl_fast_length_id(result_type, None, p)
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_fast_length_id(
-        &mut self,
-        result_type: spirv::Word,
-        result_id: Option<spirv::Word>,
-        p: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
-        #[allow(unused_mut)]
-        let mut args = vec![dr::Operand::IdRef(p)];
-        self.ext_inst(
-            result_type,
-            result_id,
-            extension_set,
-            crate::spirv::CLOp::fast_length as spirv::Word,
-            args,
-        )
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_fast_normalize(
-        &mut self,
-        result_type: spirv::Word,
-        p: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        self.cl_fast_normalize_id(result_type, None, p)
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_fast_normalize_id(
-        &mut self,
-        result_type: spirv::Word,
-        result_id: Option<spirv::Word>,
-        p: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
-        #[allow(unused_mut)]
-        let mut args = vec![dr::Operand::IdRef(p)];
-        self.ext_inst(
-            result_type,
-            result_id,
-            extension_set,
-            crate::spirv::CLOp::fast_normalize as spirv::Word,
-            args,
-        )
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_bitselect(
-        &mut self,
-        result_type: spirv::Word,
-        a: spirv::Word,
-        b: spirv::Word,
-        c: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        self.cl_bitselect_id(result_type, None, a, b, c)
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_bitselect_id(
-        &mut self,
-        result_type: spirv::Word,
-        result_id: Option<spirv::Word>,
-        a: spirv::Word,
-        b: spirv::Word,
-        c: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
-        #[allow(unused_mut)]
-        let mut args = vec![
-            dr::Operand::IdRef(a),
-            dr::Operand::IdRef(b),
-            dr::Operand::IdRef(c),
-        ];
-        self.ext_inst(
-            result_type,
-            result_id,
-            extension_set,
-            crate::spirv::CLOp::bitselect as spirv::Word,
-            args,
-        )
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_select(
-        &mut self,
-        result_type: spirv::Word,
-        a: spirv::Word,
-        b: spirv::Word,
-        c: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        self.cl_select_id(result_type, None, a, b, c)
-    }
-    #[allow(clippy::too_many_arguments)]
-    pub fn cl_select_id(
-        &mut self,
-        result_type: spirv::Word,
-        result_id: Option<spirv::Word>,
-        a: spirv::Word,
-        b: spirv::Word,
-        c: spirv::Word,
-    ) -> Result<spirv::Word, dr::Error> {
-        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
-        #[allow(unused_mut)]
-        let mut args = vec![
-            dr::Operand::IdRef(a),
-            dr::Operand::IdRef(b),
-            dr::Operand::IdRef(c),
-        ];
-        self.ext_inst(
-            result_type,
-            result_id,
-            extension_set,
-            crate::spirv::CLOp::select as spirv::Word,
-            args,
-        )
-    }
-    #[allow(clippy::too_many_arguments)]
     pub fn cl_vloadn(
         &mut self,
         result_type: spirv::Word,
@@ -4556,6 +4372,190 @@ impl Builder {
             result_id,
             extension_set,
             crate::spirv::CLOp::prefetch as spirv::Word,
+            args,
+        )
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_bitselect(
+        &mut self,
+        result_type: spirv::Word,
+        a: spirv::Word,
+        b: spirv::Word,
+        c: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        self.cl_bitselect_id(result_type, None, a, b, c)
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_bitselect_id(
+        &mut self,
+        result_type: spirv::Word,
+        result_id: Option<spirv::Word>,
+        a: spirv::Word,
+        b: spirv::Word,
+        c: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
+        #[allow(unused_mut)]
+        let mut args = vec![
+            dr::Operand::IdRef(a),
+            dr::Operand::IdRef(b),
+            dr::Operand::IdRef(c),
+        ];
+        self.ext_inst(
+            result_type,
+            result_id,
+            extension_set,
+            crate::spirv::CLOp::bitselect as spirv::Word,
+            args,
+        )
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_select(
+        &mut self,
+        result_type: spirv::Word,
+        a: spirv::Word,
+        b: spirv::Word,
+        c: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        self.cl_select_id(result_type, None, a, b, c)
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_select_id(
+        &mut self,
+        result_type: spirv::Word,
+        result_id: Option<spirv::Word>,
+        a: spirv::Word,
+        b: spirv::Word,
+        c: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
+        #[allow(unused_mut)]
+        let mut args = vec![
+            dr::Operand::IdRef(a),
+            dr::Operand::IdRef(b),
+            dr::Operand::IdRef(c),
+        ];
+        self.ext_inst(
+            result_type,
+            result_id,
+            extension_set,
+            crate::spirv::CLOp::select as spirv::Word,
+            args,
+        )
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_u_abs(
+        &mut self,
+        result_type: spirv::Word,
+        x: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        self.cl_u_abs_id(result_type, None, x)
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_u_abs_id(
+        &mut self,
+        result_type: spirv::Word,
+        result_id: Option<spirv::Word>,
+        x: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
+        #[allow(unused_mut)]
+        let mut args = vec![dr::Operand::IdRef(x)];
+        self.ext_inst(
+            result_type,
+            result_id,
+            extension_set,
+            crate::spirv::CLOp::u_abs as spirv::Word,
+            args,
+        )
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_u_abs_diff(
+        &mut self,
+        result_type: spirv::Word,
+        x: spirv::Word,
+        y: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        self.cl_u_abs_diff_id(result_type, None, x, y)
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_u_abs_diff_id(
+        &mut self,
+        result_type: spirv::Word,
+        result_id: Option<spirv::Word>,
+        x: spirv::Word,
+        y: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
+        #[allow(unused_mut)]
+        let mut args = vec![dr::Operand::IdRef(x), dr::Operand::IdRef(y)];
+        self.ext_inst(
+            result_type,
+            result_id,
+            extension_set,
+            crate::spirv::CLOp::u_abs_diff as spirv::Word,
+            args,
+        )
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_u_mul_hi(
+        &mut self,
+        result_type: spirv::Word,
+        x: spirv::Word,
+        y: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        self.cl_u_mul_hi_id(result_type, None, x, y)
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_u_mul_hi_id(
+        &mut self,
+        result_type: spirv::Word,
+        result_id: Option<spirv::Word>,
+        x: spirv::Word,
+        y: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
+        #[allow(unused_mut)]
+        let mut args = vec![dr::Operand::IdRef(x), dr::Operand::IdRef(y)];
+        self.ext_inst(
+            result_type,
+            result_id,
+            extension_set,
+            crate::spirv::CLOp::u_mul_hi as spirv::Word,
+            args,
+        )
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_u_mad_hi(
+        &mut self,
+        result_type: spirv::Word,
+        a: spirv::Word,
+        b: spirv::Word,
+        c: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        self.cl_u_mad_hi_id(result_type, None, a, b, c)
+    }
+    #[allow(clippy::too_many_arguments)]
+    pub fn cl_u_mad_hi_id(
+        &mut self,
+        result_type: spirv::Word,
+        result_id: Option<spirv::Word>,
+        a: spirv::Word,
+        b: spirv::Word,
+        c: spirv::Word,
+    ) -> Result<spirv::Word, dr::Error> {
+        let extension_set = super::ext_inst_import(self, "OpenCL.std.100");
+        #[allow(unused_mut)]
+        let mut args = vec![
+            dr::Operand::IdRef(a),
+            dr::Operand::IdRef(b),
+            dr::Operand::IdRef(c),
+        ];
+        self.ext_inst(
+            result_type,
+            result_id,
+            extension_set,
+            crate::spirv::CLOp::u_mad_hi as spirv::Word,
             args,
         )
     }
