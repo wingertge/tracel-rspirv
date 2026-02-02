@@ -180,9 +180,9 @@ pub fn parse_words(binary: impl AsRef<[u32]>, consumer: &mut dyn Consumer) -> Re
 /// # Examples
 ///
 /// ```
-/// use spirv::{AddressingModel, MemoryModel};
-/// use rspirv::binary::Parser;
-/// use rspirv::dr::{Loader, Operand};
+/// use tracel_rspirv::spirv::{AddressingModel, MemoryModel};
+/// use tracel_rspirv::binary::Parser;
+/// use tracel_rspirv::dr::{Loader, Operand};
 ///
 /// let bin = vec![
 ///     // Magic number.           Version number: 1.0.

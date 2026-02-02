@@ -754,6 +754,34 @@ impl Builder {
             new_id
         }
     }
+    #[doc = "Appends an OpTypeBufferEXT instruction and returns the result id, or return the existing id if the instruction was already present."]
+    pub fn type_buffer_ext(&mut self, storage_class: spirv::StorageClass) -> spirv::Word {
+        self.type_buffer_ext_id(None, storage_class)
+    }
+    #[doc = "Appends an OpTypeBufferEXT instruction and returns the result id, or return the existing id if the instruction was already present."]
+    pub fn type_buffer_ext_id(
+        &mut self,
+        result_id: Option<spirv::Word>,
+        storage_class: spirv::StorageClass,
+    ) -> spirv::Word {
+        let mut inst = dr::Instruction::new(
+            spirv::Op::TypeBufferEXT,
+            None,
+            result_id,
+            vec![dr::Operand::StorageClass(storage_class)],
+        );
+        if let Some(result_id) = result_id {
+            self.module.types_global_values.push(inst);
+            result_id
+        } else if let Some(id) = self.dedup_insert_type(&inst) {
+            id
+        } else {
+            let new_id = self.id();
+            inst.result_id = Some(new_id);
+            self.module.types_global_values.push(inst);
+            new_id
+        }
+    }
     #[doc = "Appends an OpTypeHitObjectNV instruction and returns the result id, or return the existing id if the instruction was already present."]
     pub fn type_hit_object_nv(&mut self) -> spirv::Word {
         self.type_hit_object_nv_id(None)
@@ -773,23 +801,23 @@ impl Builder {
             new_id
         }
     }
-    #[doc = "Appends an OpTypeCooperativeVectorNV instruction and returns the result id, or return the existing id if the instruction was already present."]
-    pub fn type_cooperative_vector_nv(
+    #[doc = "Appends an OpTypeVectorIdEXT instruction and returns the result id, or return the existing id if the instruction was already present."]
+    pub fn type_vector_id_ext(
         &mut self,
         component_type: spirv::Word,
         component_count: spirv::Word,
     ) -> spirv::Word {
-        self.type_cooperative_vector_nv_id(None, component_type, component_count)
+        self.type_vector_id_ext_id(None, component_type, component_count)
     }
-    #[doc = "Appends an OpTypeCooperativeVectorNV instruction and returns the result id, or return the existing id if the instruction was already present."]
-    pub fn type_cooperative_vector_nv_id(
+    #[doc = "Appends an OpTypeVectorIdEXT instruction and returns the result id, or return the existing id if the instruction was already present."]
+    pub fn type_vector_id_ext_id(
         &mut self,
         result_id: Option<spirv::Word>,
         component_type: spirv::Word,
         component_count: spirv::Word,
     ) -> spirv::Word {
         let mut inst = dr::Instruction::new(
-            spirv::Op::TypeCooperativeVectorNV,
+            spirv::Op::TypeVectorIdEXT,
             None,
             result_id,
             vec![
@@ -797,6 +825,25 @@ impl Builder {
                 dr::Operand::IdRef(component_count),
             ],
         );
+        if let Some(result_id) = result_id {
+            self.module.types_global_values.push(inst);
+            result_id
+        } else if let Some(id) = self.dedup_insert_type(&inst) {
+            id
+        } else {
+            let new_id = self.id();
+            inst.result_id = Some(new_id);
+            self.module.types_global_values.push(inst);
+            new_id
+        }
+    }
+    #[doc = "Appends an OpTypeHitObjectEXT instruction and returns the result id, or return the existing id if the instruction was already present."]
+    pub fn type_hit_object_ext(&mut self) -> spirv::Word {
+        self.type_hit_object_ext_id(None)
+    }
+    #[doc = "Appends an OpTypeHitObjectEXT instruction and returns the result id, or return the existing id if the instruction was already present."]
+    pub fn type_hit_object_ext_id(&mut self, result_id: Option<spirv::Word>) -> spirv::Word {
+        let mut inst = dr::Instruction::new(spirv::Op::TypeHitObjectEXT, None, result_id, vec![]);
         if let Some(result_id) = result_id {
             self.module.types_global_values.push(inst);
             result_id
@@ -998,26 +1045,6 @@ impl Builder {
                 .into_iter()
                 .map(dr::Operand::IdRef),
         );
-        if let Some(result_id) = result_id {
-            self.module.types_global_values.push(inst);
-            result_id
-        } else if let Some(id) = self.dedup_insert_type(&inst) {
-            id
-        } else {
-            let new_id = self.id();
-            inst.result_id = Some(new_id);
-            self.module.types_global_values.push(inst);
-            new_id
-        }
-    }
-    #[doc = "Appends an OpTypeTaskSequenceINTEL instruction and returns the result id, or return the existing id if the instruction was already present."]
-    pub fn type_task_sequence_intel(&mut self) -> spirv::Word {
-        self.type_task_sequence_intel_id(None)
-    }
-    #[doc = "Appends an OpTypeTaskSequenceINTEL instruction and returns the result id, or return the existing id if the instruction was already present."]
-    pub fn type_task_sequence_intel_id(&mut self, result_id: Option<spirv::Word>) -> spirv::Word {
-        let mut inst =
-            dr::Instruction::new(spirv::Op::TypeTaskSequenceINTEL, None, result_id, vec![]);
         if let Some(result_id) = result_id {
             self.module.types_global_values.push(inst);
             result_id

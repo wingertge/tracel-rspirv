@@ -51,9 +51,10 @@ type BuildResult<T> = result::Result<T, Error>;
 /// # Examples
 ///
 /// ```
-/// use rspirv::binary::Disassemble;
+/// use tracel_rspirv::binary::Disassemble;
+/// use tracel_rspirv::spirv;
 ///
-/// let mut b = rspirv::dr::Builder::new();
+/// let mut b = tracel_rspirv::dr::Builder::new();
 /// b.set_version(1, 0);
 /// b.memory_model(spirv::AddressingModel::Logical, spirv::MemoryModel::Simple);
 /// let void = b.type_void();

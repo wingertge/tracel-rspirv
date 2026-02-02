@@ -12,11 +12,13 @@ jobs:
           submodules: true
       - uses: actions-rs/toolchain@v1
         with:
-          toolchain: stable
+          toolchain: nightly
+          components: rustfmt
       - uses: actions-rs/cargo@v1
         with:
           command: run
           args: -p rspirv-autogen
+          toolchain: nightly
       - name: Diff autogen result
         run: git diff --quiet || (echo "::error::Generated files are different, please regenerate with cargo run -p rspirv-autogen!"; git diff; false)
   fmt:
@@ -26,7 +28,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
         with:
-          toolchain: stable
+          toolchain: nightly
           override: true
           profile: minimal
           components: rustfmt
@@ -34,6 +36,7 @@ jobs:
         with:
           command: fmt
           args: --all -- --check
+          toolchain: nightly
   clippy:
     name: Cargo clippy
     runs-on: ubuntu-latest

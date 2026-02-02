@@ -94,11 +94,15 @@ pub enum Type {
     NodePayloadArrayAMDX {
         payload_type: spirv::Word,
     },
+    BufferEXT {
+        storage_class: spirv::StorageClass,
+    },
     HitObjectNV,
-    CooperativeVectorNV {
+    VectorIdEXT {
         component_type: Token<Type>,
         component_count: spirv::Word,
     },
+    HitObjectEXT,
     AccelerationStructureKHR,
     CooperativeMatrixNV {
         component_type: Token<Type>,
@@ -121,5 +125,4 @@ pub enum Type {
     StructContinuedINTEL {
         member_0_type_member_1_type: Vec<spirv::Word>,
     },
-    TaskSequenceINTEL,
 }
